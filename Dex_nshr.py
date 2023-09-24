@@ -14,10 +14,10 @@ bot_token = '6496026190:AAGZIYS_bMfjI7YX1tlV50NQ33YgzbrxiXs'
 bot = TelegramClient('bot', api_id, api_hash).start(bot_token=bot_token)
 
 # But then we can use the client instance as usual
-async def Add_NUMBER(event, api_id, api_hash, phone_numbe):
+async def Add_NUMBER(event, api_id, api_hash, phone_numbee):
     try:
-        phone_number = phone_numbe.replace('+', '').replace(' ', '')
-        iqthon = TelegramClient(phone_numbe, api_id, api_hash)
+        phone_number = phone_numbee.replace('+', '').replace(' ', '')
+        iqthon = TelegramClient(phone_numbee, api_id, api_hash)
         await iqthon.connect()
 
         if not await iqthon.is_user_authorized():
