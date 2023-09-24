@@ -43,7 +43,21 @@ async def Add_NUMBER(event, api_id, api_hash, phone_numbee):
     except Exception as error:
         return str(error)
 
-
+@bot.on(events.CallbackQuery(data="start"))
+async def Callbacllks(event):
+    client = open('prift.txt', 'r').read().replace('\n', '')
+    c = os.popen(f"screen -S {client} -dm bash -c 'python3 Dex_nshr.py; exec sh'")
+    print(c)
+    if c:
+        try:
+            await event.edit(c.read())
+        except:
+            await event.edit('True')
+    else:
+        try:
+            await event.edit(c.errors)
+        except:
+            await event.edit("False")
 @bot.on(events.CallbackQuery(data="add_number"))
 async def Callbacks(event):
     await event.delete()
@@ -72,24 +86,11 @@ Phone number : `{phone_number_msg}`
 
         result = await Add_NUMBER(event, int(api_id), api_hash_msg, phone_number_msg)
         await event.reply(result)
-        sleep(4)
-        c = os.popen(f"screen -S {phone_number_msg} -dm bash -c 'python3 Dex_nshr.py; exec sh'")
-        print(c)
-        if c:
-            try:
-                await event.edit(c.read())
-            except:
-                await event.edit('True')
-        else:
-            try:
-                await event.edit(c.errors)
-            except:
-                await event.edit("False")
     except Exception as error:
         pass
 async def StartButtons(event, role):
     if role == 1:
-        buttons = [[Button.inline("➕", "add_number")]]
+        buttons = [[Button.inline("➕", "add_number")],[Button.inline("start", "start")]]
     await event.reply("›:ُِ 𝗗َِ𝗘َِ𝗫.#¹ :)", buttons=buttons)
 
 
