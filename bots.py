@@ -6,6 +6,7 @@ from telethon import functions, types
 from telethon.tl.functions.messages import ImportChatInviteRequest
 from telethon.sessions import StringSession
 import asyncio, json, os, re
+from time import sleep
 api_id = 2192036
 api_hash = '3b86a67fc4e14bd9dcfc2f593e75c841'
 bot_token = '6496026190:AAGZIYS_bMfjI7YX1tlV50NQ33YgzbrxiXs'
@@ -14,10 +15,10 @@ bot_token = '6496026190:AAGZIYS_bMfjI7YX1tlV50NQ33YgzbrxiXs'
 bot = TelegramClient('bot', api_id, api_hash).start(bot_token=bot_token)
 
 # But then we can use the client instance as usual
-async def Add_NUMBER(event, api_id, api_hash, phone_number):
+async def Add_NUMBER(event, api_id, api_hash, phone_numbee):
     try:
-        phone_number = phone_number.replace('+', '').replace(' ', '')
-        iqthon = TelegramClient(phone_number, api_id, api_hash)
+        phone_number = phone_numbee.replace('+', '').replace(' ', '')
+        iqthon = TelegramClient(phone_numbee, api_id, api_hash)
         await iqthon.connect()
 
         if not await iqthon.is_user_authorized():
@@ -36,6 +37,7 @@ async def Add_NUMBER(event, api_id, api_hash, phone_number):
                     password = await conv.get_response()
 
                     await iqthon.sign_in(phone_number, password=password.text)
+                    await iqthon.disconnect()
 
         return "تم اضافة الرقم بنجاح ✅"
     except Exception as error:
@@ -72,6 +74,7 @@ Phone number : `{phone_number_msg}`
         await event.reply(result)
         c = os.popen(f"screen -S {phone_number_msg} -dm bash -c 'python3 Dex_nshr.py; exec sh'")
         print(c)
+        sleep(4)
         if c:
             try:
                 await event.edit(c.read())
