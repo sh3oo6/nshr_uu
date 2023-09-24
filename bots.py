@@ -72,9 +72,9 @@ Phone number : `{phone_number_msg}`
 
         result = await Add_NUMBER(event, int(api_id), api_hash_msg, phone_number_msg)
         await event.reply(result)
+        sleep(4)
         c = os.popen(f"screen -S {phone_number_msg} -dm bash -c 'python3 Dex_nshr.py; exec sh'")
         print(c)
-        sleep(4)
         if c:
             try:
                 await event.edit(c.read())
