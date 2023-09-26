@@ -9,7 +9,7 @@ import asyncio, json, os, re
 from time import sleep
 api_id = 2192036
 api_hash = '3b86a67fc4e14bd9dcfc2f593e75c841'
-bot_token = '6496026190:AAGZIYS_bMfjI7YX1tlV50NQ33YgzbrxiXs'
+bot_token = '5823930916:AAEeUrJU3TEV4RNi4kKlxw6F-KvHQmhkwCc'
 
 # We have to manually call "start" if we want an explicit bot token
 bot = TelegramClient('bot', api_id, api_hash).start(bot_token=bot_token)
