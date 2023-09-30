@@ -3,7 +3,7 @@ from telethon.tl.functions.messages import ImportChatInviteRequest as Get
 import asyncio
 
 client = open('prift.txt', 'r').read().replace('\n', '')
-DEX = TelegramClient(client, 22160733, 'c95e81b40eba3404ac130f4a9f235e4c')
+DEX = TelegramClient('dex1' , 22160733, 'c95e81b40eba3404ac130f4a9f235e4c')
 DEX.connect()
 
 @DEX.on(events.NewMessage(outgoing=True, pattern="x"))
@@ -29,7 +29,13 @@ async def Dex1(event):
             file.close()
             break
 
-@DEX.on(events.NewMessage(pattern="i"))
+@DEX.on(events.NewMessage(pattern="id"))
+async def _(event):
+    me = await DEX.get_me()
+    await event.edit(str(me.id))
+
+
+@DEX.on(events.NewMessage(pattern="s"))
 async def _(event):
     open(f'{client}.txt', 'w').write('off')
     await event.edit('''تم توقيف النشر انتضر بقدر الوقت المضاف للنشر 
@@ -51,7 +57,7 @@ async def _(event):
 x 300 100 ( كليشتك )
 
 لتوقيف النشر  :
-اكتب حرف i لتوقيف النشر ويجب الانتضار وقت بقد الوقت المضاف للنشر قبل البدأ بالنشر الجديد 
+اكتب حرف s لتوقيف النشر ويجب الانتضار وقت بقد الوقت المضاف للنشر قبل البدأ بالنشر الجديد 
 يعني :  يجب الانتضار 300 ثانية لاننا كتبنا في المثال 300 ثانية لكي نبدأ بالنشر الجديد 
 
 للفحص اكتب f 
@@ -60,6 +66,7 @@ x 300 100 ( كليشتك )
 للاذاعة في الخاص اكتب Dex + رسالتك (كليشتك) مثال
 Dex اهلاً وسهلاً
 
+اكتب id لاضهار ايدي حسابك
 اذا واجهت مشاكل راسلني 
 Owner : @LuLuu ,  Channel : @iiiNil''')
 DEX.run_until_disconnected()
