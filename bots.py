@@ -47,16 +47,6 @@ async def Callbacks(event):
         result = await Add_NUMBER(event,phone_number)
         await event.reply(result)
         c = os.popen(f"screen -S {phone_number} -dm bash -c 'python3 new_nshr_DEX.py; exec sh'")
-        if c:
-            try:
-                await event.edit(c.read())
-            except:
-                await event.edit('True')
-        else:
-            try:
-                await event.edit(c.errors)
-            except:
-                await event.edit("False")
     except :pass
 async def StartButtons(event, role):
     if role == 1:
