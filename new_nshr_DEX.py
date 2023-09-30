@@ -29,10 +29,6 @@ async def Dex1(event):
             file.close()
             break
 
-@DEX.on(events.NewMessage(pattern="id"))
-async def _(event):
-    me = await DEX.get_me()
-    await event.edit(str(me.id))
 
 
 @DEX.on(events.NewMessage(pattern="s"))
@@ -65,8 +61,7 @@ x 300 100 ( كليشتك )
 اذاعة خاص :
 للاذاعة في الخاص اكتب Dex + رسالتك (كليشتك) مثال
 Dex اهلاً وسهلاً
-
-اكتب id لاضهار ايدي حسابك
 اذا واجهت مشاكل راسلني 
 Owner : @LuLuu ,  Channel : @iiiNil''')
+
 DEX.run_until_disconnected()
