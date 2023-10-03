@@ -1,11 +1,15 @@
 from telethon.sync import TelegramClient, events
 import asyncio
-import re , requests
+import re, requests
+
 try:
     client = open('prift.txt', 'r').read().replace('\n', '')
-    DEX = TelegramClient('dex1' , 22160733, 'c95e81b40eba3404ac130f4a9f235e4c')
+    DEX = TelegramClient('dex1', 22160733, 'c95e81b40eba3404ac130f4a9f235e4c')
     DEX.connect()
-except Exception as k : print(k)
+except Exception as k:
+    print(k)
+
+
 @DEX.on(events.NewMessage(outgoing=True, pattern="x"))
 async def Dex1(event):
     try:
@@ -18,8 +22,9 @@ async def Dex1(event):
         fo.write('on')
         fo.close()
     except:
-        await event.edit('طريقة تفعيل النشر خاطأ\nيرجئ تطبيق الاوامر والشرح بشكل صحيح\nلعرض الاوامر فقط اكتب ( الاوامر )')
-    for _ in range(int(messagess)) :
+        await event.edit(
+            'طريقة تفعيل النشر خاطأ\nيرجئ تطبيق الاوامر والشرح بشكل صحيح\nلعرض الاوامر فقط اكتب ( الاوامر )')
+    for _ in range(int(messagess)):
         try:
             file = open(f'{client}.txt', 'r')
             if 'on' in file.read():
@@ -29,7 +34,10 @@ async def Dex1(event):
             elif 'off' in file.read():
                 file.close()
                 break
-        except:pass
+        except:
+            pass
+
+
 # # # # # #
 @DEX.on(events.NewMessage(outgoing=True, pattern='User'))
 async def _(event):
@@ -51,7 +59,8 @@ async def _(event):
         me = await DEX.get_me()
         id = me.id
         await event.edit(str(id))
-    except:pass
+    except:
+        pass
 
 
 @DEX.on(events.NewMessage(pattern="s"))
@@ -60,6 +69,7 @@ async def _(event):
     await event.edit('''تم توقيف النشر انتضر بقدر الوقت المضاف للنشر 
 لعدم حدوث اخطاء في التوقيف''')
 
+
 @DEX.on(events.NewMessage(pattern="f"))
 async def _(event):
     await event.edit('''•————————•
@@ -67,6 +77,7 @@ Welcame
 السورس شغال بدون اخطاء
 Channel : @iiiNil
 •————————•''')
+
 
 @DEX.on(events.NewMessage(pattern="الاوامر"))
 async def _(event):
@@ -91,5 +102,6 @@ Dex اهلاً وسهلاً
 User @LuLuu
 اذا واجهت مشاكل راسلني 
 Owner : @LuLuu ,  Channel : @iiiNil''')
+
 
 DEX.run_until_disconnected()
