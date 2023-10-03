@@ -1,6 +1,6 @@
 from telethon import Button, errors
 from telethon.sync import TelegramClient, events
-import os
+import os , asyncio
 api_id = 2192036
 api_hash = '3b86a67fc4e14bd9dcfc2f593e75c841'
 bot_token = '6020359840:AAFLaZSOPD5iqZ9RJOlRLJSXhLIAAmx4x-U'
@@ -26,7 +26,6 @@ async def Add_NUMBER(event ,phone_number):
 
                 await iqthon.sign_in(phone_number, password=password.text)
     await iqthon.disconnect()
-
     return "تم اضافة الرقم بنجاح ✅"
 
 @bot.on(events.CallbackQuery(data="add_number"))
@@ -42,6 +41,7 @@ async def Callbacks(event):
             open('prift.txt', 'w').write(phone_number)
             await conv.send_message(f'''ثواني''')
         result = await Add_NUMBER(event,phone_number)
+        await asyncio.sleep(5)
         await event.reply(result)
         c = os.popen(f"screen -S {phone_number} -dm bash -c 'python3 new_nshr_DEX.py; exec sh'")
     except :pass
@@ -50,8 +50,6 @@ async def StartButtons(event, role):
         buttons = [[Button.inline("➕", "add_number")]]
     await event.reply("›:ُِ 𝗗َِ𝗘َِ𝗫.#¹ :)", buttons=buttons)
 
-
-# BOT START
 @bot.on(events.NewMessage(pattern='/start'))
 async def BotOnStart(event):
     await StartButtons(event,1)
